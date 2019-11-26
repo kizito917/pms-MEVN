@@ -71,7 +71,7 @@ export default {
         const options = {
             headers: {'authorization': headerToSend}
         };
-        axios.get('http://localhost:1000/client/myInvoice', options)
+        axios.get('https://pmsbackendapi.herokuapp.com/client/myInvoice', options)
         .then((res) => {
             console.log(res.data.result),
             this.fetchedInvoices = res.data.result

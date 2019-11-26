@@ -6,6 +6,10 @@ let appointmentSchema = new Schema({
 		type: String,
 		require: true
 	},
+	email: {
+		type: String,
+		require: true
+	},
 	appointmentDate: {
 		type: Date,
 		require: true

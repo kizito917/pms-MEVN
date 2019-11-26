@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         loginAdmin() {
-            axios.post('http://localhost:1000/adminAuth/login', {
+            axios.post('https://pmsbackendapi.herokuapp.com/adminAuth/login', {
                 email: this.email,
                 password: this.password
             })
@@ -58,7 +58,10 @@ export default {
                 localStorage.setItem('adminToken', res.data)
                 setTimeout( () => this.$router.push({ path: '/admin/dashboard'}), 2000);
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                console.log(err),
+                this.errorMsg = true
+            })
         }
     }
 }

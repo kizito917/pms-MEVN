@@ -99,7 +99,7 @@ export default {
         const options = {
             headers: {'authorization': this.$store.state.gottenToken}
         };
-        axios.get('http://localhost:1000/admin/clientsAppointment', options)
+        axios.get('https://pmsbackendapi.herokuapp.com/admin/clientsAppointment', options)
         .then((res) => {
             console.log(res.data.fetchedData),
             this.fetchedAppointments = res.data.fetchedData
@@ -112,11 +112,11 @@ export default {
             const options = {
                 headers: {'authorization': this.$store.state.gottenToken}
             };
-            axios.patch('http://localhost:1000/admin/confirmClientsAppointment/' + paramsId,
+            axios.patch('https://pmsbackendapi.herokuapp.com/admin/confirmClientsAppointment/' + paramsId,
              {_id: paramsId} ,options)
              .then((res) => {
                     console.log(res),
-                    axios.get('http://localhost:1000/admin/clientsAppointment', options)
+                    axios.get('https://pmsbackendapi.herokuapp.com/admin/clientsAppointment', options)
                     .then((res) => {
                         console.log(res.data.fetchedData),
                         this.fetchedAppointments = res.data.fetchedData
@@ -130,11 +130,11 @@ export default {
             const options = {
                 headers: {'authorization': this.$store.state.gottenToken}
             }
-            axios.patch('http://localhost:1000/admin/cancelClientsAppointment/' + paramsId,
+            axios.patch('https://pmsbackendapi.herokuapp.com/admin/cancelClientsAppointment/' + paramsId,
             {_id: paramsId}, options)
             .then((res) => {
                 console.log(res),
-                axios.get('http://localhost:1000/admin/clientsAppointment', options)
+                axios.get('https://pmsbackendapi.herokuapp.com/admin/clientsAppointment', options)
                     .then((res) => {
                         console.log(res.data.fetchedData),
                         this.fetchedAppointments = res.data.fetchedData
@@ -148,11 +148,11 @@ export default {
             const options = {
                 headers: {'authorization': this.$store.state.gottenToken}
             }
-            axios.delete('http://localhost:1000/admin/deleteClientsAppointment/' + paramsId,
+            axios.delete('https://pmsbackendapi.herokuapp.com/admin/deleteClientsAppointment/' + paramsId,
             options)
             .then((res) => {
                 console.log(res),
-                axios.get('http://localhost:1000/admin/clientsAppointment', options)
+                axios.get('https://pmsbackendapi.herokuapp.com/admin/clientsAppointment', options)
                     .then((res) => {
                         console.log(res.data.fetchedData),
                         this.fetchedAppointments = res.data.fetchedData
@@ -165,7 +165,7 @@ export default {
             const options = {
                 headers: {'authorization' : this.$store.state.gottenToken}
             }
-            axios.get('http://localhost:1000/admin/clientsAppointment/' + paramsId, options)
+            axios.get('https://pmsbackendapi.herokuapp.com/admin/clientsAppointment/' + paramsId, options)
             .then((res) => {
                 console.log(res.data.Data),
                 this.rescheduleData = res.data.Data
@@ -176,11 +176,11 @@ export default {
             const options = {
                 headers: {'authorization': this.$store.state.gottenToken}
             }
-            axios.put('http://localhost:1000/admin/rescheduleClientsAppointment/' + id ,
+            axios.put('https://pmsbackendapi.herokuapp.com/admin/rescheduleClientsAppointment/' + id ,
             {appointmentDate: this.appointmentDate}, options)
             .then((res) => {
                 console.log(res),
-                axios.get('http://localhost:1000/admin/clientsAppointment', options)
+                axios.get('https://pmsbackendapi.herokuapp.com/admin/clientsAppointment', options)
                     .then((res) => {
                         console.log(res.data.fetchedData),
                         this.fetchedAppointments = res.data.fetchedData,

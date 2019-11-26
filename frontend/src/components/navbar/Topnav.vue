@@ -25,7 +25,7 @@
                                 <em>{{ username }}</em>
                             </template>
                             <b-dropdown-item href="#">Profile</b-dropdown-item>
-                            <b-dropdown-item href="#">Sign out</b-dropdown-item>
+                            <b-dropdown-item href="#" @click="signOutUser">Sign out</b-dropdown-item>
                         </b-nav-item-dropdown>
                     </b-navbar-nav>
                 </b-collapse>
@@ -46,9 +46,15 @@ export default {
         const options = {
             headers: {'authorization': headerToSend}
         };
-        axios.get('http://localhost:1000/auth/dashboard', options)
+        axios.get('https://pmsbackendapi.herokuapp.com/auth/dashboard', options)
         .then((res)=> {this.username = res.data.authData.user.fullName})
         .catch((err) => console.log(err))
+    },
+    methods: {
+        signOutUser() {
+            localStorage.removeItem('userToken')
+            this.$router.push('/client/login')
+        }
     }
 }
 </script>

@@ -7,9 +7,9 @@
                 <a href="/admin/dashboard">Dashboard</a>
                 <a href="/admin/viewClients">Clients</a>
                 <a href="/admin/viewClientsAppointment">Appointment</a>
-                <a href="#news">profile</a>
+                <a href="/admin/viewDocuments">Documents</a>
                 <a href="/admin/createClientsInvoice">Invoice</a>
-                <a href="#about">Log Out</a>
+                <a href="#about" @click="signOutAdmin">Log Out</a>
             </div>
         </div>
     </div>
@@ -17,7 +17,17 @@
 
 <script>
 export default {
-    
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+      signOutAdmin() {
+            localStorage.removeItem('adminToken')
+            this.$router.push('/admin/login')
+      }
+    }
 }
 </script>
 

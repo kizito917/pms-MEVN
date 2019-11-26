@@ -26,41 +26,31 @@
       <div class="modal-body">
           <span>Choose document type by clicking button below (single/multiple)</span>
         <p style="text-align: center;"><strong>Upload Your Documents Below</strong></p>
+        <div class="alert alert-success" v-if="uploaded">
+          Your document has been uploaded successfully
+        </div>
+        <div class="alert alert-danger" v-if="notUploaded">
+          Error in processing Documents, Please reduce file size...
+        </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <button class="btn btn-primary" v-on:click="showSingleUpload">Single</button>
-            </div>
-            <div class="col-md-6">
-                <button class="btn btn-info" v-on:click="showMultipleUpload">Multiple</button>
             </div>
         </div>
         <div class="form-div">
             
                 <div class="row">
                     <div class="col-md-6 sm-6 lg-6" v-if="singleUpload">
-                        <form enctype="multipart/form-data">
+                        <form enctype="multipart/form-data" v-on:submit.prevent="uploadSingleDoc">
                             <div class="form-group" id="first-fg">
                                 <label for="file">Upload File</label>
-                                <input type="file" name="file" ref="pdf" v-on:change="onSelect" required class="form-control">
+                                <input type="file" id="file" ref="file" v-on:change="onSelect" required class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="submit" @click.prevent="uploadSingleDoc" value="Upload" class="btn btn-success">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6 sm-6 lg-6" v-if="multipleUpload">
-                        <form action="">
-                            <div class="form-group" id="first-fg">
-                                <label for="file">Upload File</label>
-                                <input type="file" ref="pdf" v-on:change="onSelectMultiple" required class="form-control">
+                              <input type="text" v-model="fileName" name="" class="form-control" placeholder="Enter File Name">
                             </div>
                             <div class="form-group">
-                                <label for="file">Upload File</label>
-                                <input type="file" ref="pdf1" v-on:change="onSelectMultiple1" required class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="file">Upload File</label>
-                                <input type="file" ref="pdf2" v-on:change="onSelectMultiple2" required class="form-control">
+                                <input type="submit" value="Upload" class="btn btn-success">
                             </div>
                         </form>
                     </div>
@@ -89,13 +79,27 @@ export default {
     },
     data() {
         return {
+          cloudinary: {
+            uploadPreset: 't59s6kc4',
+            apiKey: '779991183683463',
+            cloudName: 'femithz'
+        },
             gottenToken: this.$store.getters.getUserToken,
             singleUpload: false,
             multipleUpload: false,
-            fileInfo: '',
-            multipleFileInfo: []
+            file: '',
+            multipleFileInfo: [],
+            uploaded: false,
+            notUploaded: false,
+            fileUrl: '',
+            fileName: ''
         }
     },
+    computed: {
+    clUrl() {
+          return `https://api.cloudinary.com/v1_1/${this.cloudinary.cloudName}/upload`
+      }
+  },
     created() {
         this.$store.getters.getAdminToken
     },
@@ -109,8 +113,17 @@ export default {
             this.singleUpload = false
         },
         onSelect() {
-            this.fileInfo = this.$refs.pdf.files[0];
-            console.log(this.fileInfo)
+            this.file = this.$refs.file.files[0];
+            console.log(this.file)
+            let formData = new FormData();
+            formData.append('file', this.file);
+            formData.append('upload_preset', this.cloudinary.uploadPreset);
+            axios.post(this.clUrl, formData)
+            .then((res) => {
+              console.log(res.data.secure_url),
+              this.fileUrl = res.data.secure_url
+            })
+            .catch((err) => console.log(err))
         },
         onSelectMultiple() {
            this.multipleFileInfo.push(this.$refs.pdf.files[0])
@@ -128,18 +141,21 @@ export default {
             
         },
         uploadSingleDoc() {
-            const formData = new FormData()
-                formData.append('file', this.fileInfo);
             const config = {
                 headers: {
-                    'authorization': this.$store.state.userToken,
-                    'Accept': 'multipart/form-data'
-                    },
-                        
-            };
-            axios.post('http://localhost:1000/client/singleDoc', formData, config)
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+                    'authorization': this.$store.state.userToken
+                }     
+            }
+            axios.post('https://pmsbackendapi.herokuapp.com/client/singleDoc', {fileUrl: this.fileUrl, fileName: this.fileName} , config)
+            .then((res) => {
+              console.log(res),
+              this.uploaded = true
+              setTimeout( () => this.$router.push('/client/myDocuments'), 2000);
+            })
+            .catch((err) => {
+              console.log(err),
+              this.notUploaded = true
+            })
         }
     }
 }

@@ -61,7 +61,7 @@ export default {
         const options = {
             headers: {'authorization': gotLocalToken}
         };
-        axios.get('http://localhost:1000/admin/getClients', options)
+        axios.get('https://pmsbackendapi.herokuapp.com/admin/getClients', options)
         .then((res) => {
             console.log(res.data.clients),
             this.clients = res.data.clients
@@ -73,7 +73,7 @@ export default {
             const headerOption = {
                 headers: {'authorization' : this.optionToken}
             }
-            axios.delete('http://localhost:1000/admin/clients/' + id, headerOption)
+            axios.delete('https://pmsbackendapi.herokuapp.com/admin/clients/' + id, headerOption)
             .then((res) => {
                 console.log(res),
                 this.$router.push('/admin/viewClients'),

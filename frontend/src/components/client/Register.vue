@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         registerUser() {
-            axios.post('http://localhost:1000/auth/signup', {
+            axios.post('https://pmsbackendapi.herokuapp.com/auth/signup', {
                 fullName: this.fullName,
                 companyName: this.companyName,
                 phoneNumber: this.phoneNumber,

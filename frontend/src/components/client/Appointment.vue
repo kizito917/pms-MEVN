@@ -19,7 +19,7 @@
                             <textarea class="form-control" v-model="appointmentMessage" placeholder="Write Briefly Reason for appointment" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-info" value="Book Appointment"> <router-link to="" id="app-book-viewBtn" class="btn btn-info">View All My Booked Appointment</router-link>
+                            <input type="submit" class="btn btn-info" value="Book Appointment"> <router-link to="/client/myAppointment" id="app-book-viewBtn" class="btn btn-info">View All My Booked Appointment</router-link>
                         </div>
                     </form>
                 </div>
@@ -53,7 +53,7 @@ export default {
             const options = {
                 headers: {'authorization': headerToSend}
             };
-            axios.post('http://localhost:1000/client/appointment', {
+            axios.post('https://pmsbackendapi.herokuapp.com/client/appointment', {
                 appointmentDate: this.appointmentDate,
                 appointmentMessage: this.appointmentMessage
             } , options)

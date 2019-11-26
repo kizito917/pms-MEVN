@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 //database connection url
-const url = process.env.MONGOLAB_URI || "mongodb://localhost/pms"; // giving access to locl database in development mode
+const url = process.env.MONGOLAB_URI || "mongodb://localhost/pms"; // giving access to local database in development mode
 																  //and online database in production mode
 
 //creating a connection

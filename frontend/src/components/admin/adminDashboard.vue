@@ -49,7 +49,7 @@ export default {
         const options = {
             headers: {'authorization': gotLocalToken}
         };
-        axios.get('http://localhost:1000/adminAuth/dashboard', options)
+        axios.get('https://pmsbackendapi.herokuapp.com/adminAuth/dashboard', options)
         .then((res) => {
             console.log(res.data.authData.user.fullName),
             this.name = res.data.authData.user.fullName

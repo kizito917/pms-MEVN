@@ -17,6 +17,7 @@ router.post('/appointment', isValidUser , (req, res) => {
 					} else {
 						var bookAppointment = new appointment({
 							companyName: result.companyName,
+							email: req.params.user.email,
 							appointmentDate: req.body.appointmentDate,
 							appointmentMessage: req.body.appointmentMessage,
 							status: 'pending',
@@ -53,18 +54,16 @@ router.get('/myBookedAppointments', isValidUser, (req, res) => {
 			return res.status(403).json({message: 'Unauthorized'})
 		} else {
 			req.params = authData
-			appointment.find({}, (err, result) => {
+			appointment.find({email: req.params.user.email}, (err, result) => {
 				if (err) {
 					return res.status(400).json({message: 'Unable to process request'})
 				} else {
-					console.log(result.client.id)
-					// return res.status(200).json({
-					// 	data: result
-					// })
+					return res.status(200).json({
+						message: 'Appointment Fetched',
+						data: result
+					})
 				}
 			})
-			// console.log(req.params)
-			// res.status(200).json({getMe: req.params})
 		}
 	})
 });

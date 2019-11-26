@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         loginUser(){
-            axios.post('http://localhost:1000/auth/login', {
+            axios.post('https://pmsbackendapi.herokuapp.com/auth/login', {
                 email: this.email,
                 password: this.password
             })

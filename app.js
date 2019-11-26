@@ -10,9 +10,11 @@ const authRouter = require('./routes/users/auth');
 const clientInvoiceRouter = require('./routes/users/invoice');
 const appointmentRouter = require('./routes/users/appointment');
 const documentUploadRouter = require('./routes/users/document');
+const profileRouter = require('./routes/users/profile');
 const adminAuthRouter = require('./routes/admin/adminAuth');
 const companyExpenseRouter = require('./routes/admin/companyExpenses');
 const clientsAppointmentRouter = require('./routes/admin/clientsAppointment');
+const clientsDocument = require('./routes/admin/clientsDocument');
 const getClientsRouter = require('./routes/admin/getClient');
 const adminCreateInvoice = require('./routes/admin/clientsInvoice');
 
@@ -38,12 +40,12 @@ app.use(cors(corsOptions));
 //initializing usage of routers for users
 app.use('/auth', authRouter);
 app.use('/client', clientInvoiceRouter, appointmentRouter, 
-					documentUploadRouter);
+					documentUploadRouter, profileRouter);
 
 //initializing usage of routers for admins
 app.use('/adminAuth', adminAuthRouter);
 app.use('/admin', getClientsRouter, companyExpenseRouter, 
-					clientsAppointmentRouter, adminCreateInvoice);
+					clientsAppointmentRouter, adminCreateInvoice, clientsDocument);
 
 app.get('/', (req, res, next) => {
 	res.send('Welcome to PMS API served on port: ' + port)

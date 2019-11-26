@@ -13,10 +13,9 @@
                     <!-- <button class="btn btn-info">Book an Appointment</button> -->
                 </div>
                 <div class="col-md-4 sm-4 lg-4" id="col-row">
-                    <p>Viewing your profile as a user has been made easy for you... Isn't that awesome? 
-                        click the button below to view your profile
+                    <p>Uploading Your documents has been made easy, Kindly click the button below to upload your single and multiple documents
                     </p>
-                    <router-link to="" class="btn btn-info" id="btnn">View your Profile</router-link>
+                    <router-link to="/client/uploadDocuments" class="btn btn-info" id="btnn">Upload Document(s)</router-link>
                     <!-- <button class="btn btn-info">View your Profile</button> -->
                 </div>
                 <div class="col-md-4 sm-4 lg-4" id="col-row">

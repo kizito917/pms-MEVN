@@ -61,7 +61,7 @@ export default {
     },
     methods: {
         registerAdmin() {
-        axios.post('http://localhost:1000/adminAuth/signup', {
+        axios.post('https://pmsbackendapi.herokuapp.com/adminAuth/signup', {
             fullName: this.fullName,
             companyName: this.companyName,
             phoneNumber: this.phoneNumber,

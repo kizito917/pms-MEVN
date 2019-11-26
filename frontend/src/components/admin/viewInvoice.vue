@@ -5,7 +5,7 @@
          <div class="content">
              <div class="main-content-area">
                  <h5>All Created Invoices</h5>
-                 <router-link to="/admin/createClientsInvoice" id="viewInv-btn" class="btn btn-info">Created Client Invoice</router-link>
+                 <router-link to="/admin/createClientsInvoice" id="viewInv-btn" class="btn btn-info">Create Client Invoice</router-link>
                  <div class="fetchedinTable">
                      <div class="table-responsive">
                          <table  border="1" class="table table-stripped table-bordered table-hover">
@@ -69,7 +69,7 @@ export default {
         const options = {
             headers: {'authorization' : this.$store.state.gottenToken}
         }
-        axios.get('http://localhost:1000/admin/allClientsInvoice', options)
+        axios.get('https://pmsbackendapi.herokuapp.com/admin/allClientsInvoice', options)
         .then((res) => {
             console.log(res.data.dataFetched),
             this.fetchedData = res.data.dataFetched

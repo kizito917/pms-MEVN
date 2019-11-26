@@ -6,13 +6,17 @@ import clientLogin from '../components/client/Login.vue'
 import clientDashboard from '../components/client/Dashboard.vue'
 import clientAppointment from '../components/client/Appointment.vue'
 import clientInvoice from '../components/client/myInvoice.vue'
+import myAppointments from '../components/client/ViewAppointment.vue'
 import uploadDocs from '../components/client/uploadDocument.vue'
+import myDocuments from '../components/client/myDocument.vue'
+import myProfile from '../components/client/myProfile.vue'
 import adminRegister from '../components/admin/adminRegister.vue'
 import adminLogin from '../components/admin/adminLogin.vue'
 import adminDashboard from '../components/admin/adminDashboard.vue'
 import viewClients from '../components/admin/viewClients.vue'
 import viewClientsAppointment from '../components/admin/viewClientsAppointment.vue'
 import createClientsInvoice from '../components/admin/createClientsInvoice.vue'
+import viewClientsDocuments from '../components/admin/viewClientsDocument.vue'
 import viewInvoice from '../components/admin/viewInvoice.vue'
 
 
@@ -51,6 +55,14 @@ const routes = [
     }
   },
   {
+    path: '/client/myAppointment',
+    name: 'myAppointments',
+    component: myAppointments,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/client/myInvoice',
     name: 'clientInvoice',
     component: clientInvoice,
@@ -59,9 +71,25 @@ const routes = [
     }
   },
   {
+    path: '/client/myProfile',
+    name: 'myProfile',
+    component: myProfile,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/client/uploadDocuments',
     name: 'uploadDocument',
     component: uploadDocs,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/client/myDocuments',
+    name: 'myDocuments',
+    component: myDocuments,
     meta: {
       requiresAuth: true
     }
@@ -112,6 +140,14 @@ const routes = [
     path: '/admin/viewInvoice',
     name: 'viewInvoice',
     component: viewInvoice,
+    meta: {
+      requiresAdminAuth: true
+    }
+  },
+  {
+    path: '/admin/viewDocuments',
+    name: 'viewClientsDocuments',
+    component: viewClientsDocuments,
     meta: {
       requiresAdminAuth: true
     }

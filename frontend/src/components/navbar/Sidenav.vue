@@ -5,11 +5,11 @@
             <div class="link-area">
                 
                 <a href="/client/dashboard">Dashboard</a>
-                <a href="#news">profile</a>
-                <a href="#contact">Appointment</a>
-                <a href="/client/uploadDocuments">Documents</a>
-                <a href="#about">Invoice</a>
-                <a href="#about">Log Out</a>
+                <a href="/client/myProfile">profile</a>
+                <a href="/client/Appointment">Appointment</a>
+                <a href="/client/myDocuments">Documents</a>
+                <a href="/client/myInvoice">Invoice</a>
+                <a href="#about" @click="signOutUser">Log Out</a>
             </div>
         </div>
     </div>
@@ -17,7 +17,17 @@
 
 <script>
 export default {
-    
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+      signOutUser() {
+            localStorage.removeItem('userToken')
+            this.$router.push('/client/login')
+      }
+    }
 }
 </script>
 

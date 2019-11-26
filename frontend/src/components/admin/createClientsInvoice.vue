@@ -117,7 +117,7 @@ export default {
         const options = {
             headers: {'authorization': this.gottenAdminToken}
         }
-        axios.get('http://localhost:1000/admin/getClients', options)
+        axios.get('https://pmsbackendapi.herokuapp.com/admin/getClients', options)
         .then((res) => {
             this.companyNames = res.data.clients
             })
@@ -130,7 +130,7 @@ export default {
            const options = {
                 headers: {'authorization' : this.gottenAdminToken}
              }
-           axios.post('http://localhost:1000/admin/getClientName', {companyName: get} ,options)
+           axios.post('https://pmsbackendapi.herokuapp.com/admin/getClientName', {companyName: get} ,options)
            .then((res) => {
                this.fullName = res.data
                })
@@ -140,7 +140,7 @@ export default {
            const options = {
                headers: {'authorization' : this.gottenAdminToken}
            }
-           axios.post('http://localhost:1000/admin/createClientInvoice', 
+           axios.post('https://pmsbackendapi.herokuapp.com/admin/createClientInvoice', 
            { dateIssued: this.dateIssued, dateDue: this.dateDue, serviceRendered: this.serviceRendered, invoiceNumber: this.invoiceNumber,
 				fullName: this.fullName,
 				companyName: this.companyName,

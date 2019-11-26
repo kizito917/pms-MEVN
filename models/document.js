@@ -2,27 +2,23 @@ const mongoose = require('mongoose');
 const Schema=mongoose.Schema
 
 let documentSchema = new Schema({
-	client: {
-		id: {
+	id: {
 			type: mongoose.Schema.Types.ObjectId,
 	        ref: "User" 
 		},
+	client: {
 		fullName: {
 			type: String,
 			require: true
 		}
 	},
-	document: [
-		{
-			docId: {
-				type: mongoose.Schema.Types.ObjectId,
-				ref: "Appointment"
-			},
-			docUrl : {
-				type: String
-			}
-		}
-	],
+	docName: {
+		type: String,
+		require: true
+	},
+	docContentUrl : {
+		type: String
+	},
 	created_dt: {
 		type: Date,
 		require: true
